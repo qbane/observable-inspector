@@ -24,3 +24,8 @@ export function valueof(object, key) {
     return FORBIDDEN;
   }
 }
+
+export function formatKey(key) {
+  key = key.toString();
+  return key.match(/\s/) ? JSON.stringify(key) : key;
+}

@@ -3,7 +3,7 @@ import inspectExpanded from "./expanded.js";
 import formatSymbol from "./formatSymbol.js";
 import inspectName from "./inspectName.js";
 import {inspect, replace} from "./inspect.js";
-import {isown, symbolsof, tagof, valueof} from "./object.js";
+import {isown, symbolsof, tagof, valueof, formatKey} from "./object.js";
 import {immutableName} from "./immutable.js";
 
 function hasSelection(elem) {
@@ -69,7 +69,7 @@ export default function inspectCollapsed(object, shallow, name, proto) {
     span.appendChild(inspectName(name));
   }
   const a = span.appendChild(document.createElement("a"));
-  a.innerHTML = `<svg width=8 height=8 class='observablehq--caret'>
+  a.innerHTML = `<svg width=1ch height=1ch viewbox='0 0 8 8' class='observablehq--caret'>
     <path d='M7 4L1 8V0z' fill='currentColor' />
   </svg>`;
   a.appendChild(document.createTextNode(`${tag}${arrayish ? " [" : " {"}`));
@@ -169,7 +169,7 @@ function formatField(key, value, className) {
   const fragment = document.createDocumentFragment();
   const span = fragment.appendChild(document.createElement("span"));
   span.className = className;
-  span.textContent = key;
+  span.textContent = formatKey(key);
   fragment.appendChild(document.createTextNode(": "));
   fragment.appendChild(inspect(value, true));
   return fragment;

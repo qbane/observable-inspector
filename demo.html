@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
-<script src='https://cdn.jsdelivr.net/npm/immutable@4.0.0-rc.12/dist/immutable.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/immutable@4.3.7/dist/immutable.min.js'></script>
 <style>
 :root {
   --syntax_normal: #1b1e23;
@@ -35,7 +36,7 @@
 }
 
 .observablehq--caret {
-  margin-right: 4px;
+  margin-right: 1ch;
   vertical-align: middle;
 }
 
@@ -55,8 +56,8 @@
 }
 
 .observablehq--field {
-  text-indent: -2em;
-  margin-left: 2em;
+  text-indent: calc(var(--continuation-indent) * -1 - 2ch);
+  margin-left: calc(var(--continuation-indent) + 2ch);
 }
 
 .observablehq--empty {
@@ -124,6 +125,7 @@ a[href],
   padding: 0 14px 0 10px;
   border-left: solid 4px transparent;
   transition: border-left-color 250ms linear;
+  --continuation-indent: 2ch;
 }
 
 .observablehq--inspect {
@@ -150,11 +152,11 @@ a[href],
 
 /** appended **/
 .observablehq--field > .observablehq--expanded > .observablehq--field {
-  margin-left: 1em;
+  margin-left: 2ch;
 }
 
 .observablehq--field > .observablehq--expanded > .observablehq--token-closing {
-  margin-left: -1em;
+  margin-left: calc(var(--continuation-indent) * -1);
 }
 </style>
  

@@ -4,7 +4,7 @@ import {isarray, isindex} from "./array.js";
 import inspectCollapsed from "./collapsed.js";
 import formatSymbol from "./formatSymbol.js";
 import {inspect, replace} from "./inspect.js";
-import {isown, symbolsof, tagof, valueof} from "./object.js";
+import {isown, symbolsof, tagof, valueof, formatKey} from "./object.js";
 import {immutableName} from "./immutable.js";
 
 const {getPrototypeOf, getOwnPropertyDescriptors} = Object;
@@ -55,7 +55,7 @@ export default function inspectExpanded(object, _, name, proto) {
     span.appendChild(inspectName(name));
   }
   const a = span.appendChild(document.createElement("a"));
-  a.innerHTML = `<svg width=8 height=8 class='observablehq--caret'>
+  a.innerHTML = `<svg width=1ch height=1ch viewbox='0 0 8 8' class='observablehq--caret'>
     <path d='M4 7L0 1h8z' fill='currentColor' />
   </svg>`;
   a.appendChild(document.createTextNode(`${tag}${arrayish ? " [" : " {"}`));
@@ -202,7 +202,7 @@ function formatField(key, value, className) {
   const span = item.appendChild(document.createElement("span"));
   item.className = "observablehq--field";
   span.className = className;
-  span.textContent = `  ${key}`;
+  span.textContent = `  ${formatKey(key)}`;
   item.appendChild(document.createTextNode(": "));
   item.appendChild(inspect(value));
   return item;

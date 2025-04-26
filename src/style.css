@@ -30,7 +30,7 @@
 }
 
 .observablehq--caret {
-  margin-right: 4px;
+  margin-right: 1ch;
   vertical-align: middle;
 }
 
@@ -50,8 +50,8 @@
 }
 
 .observablehq--field {
-  text-indent: -2em;
-  margin-left: 2em;
+  text-indent: calc(var(--continuation-indent) * -1 - 2ch);
+  margin-left: calc(var(--continuation-indent) + 2ch);
 }
 
 .observablehq--empty {
@@ -110,6 +110,10 @@
   color: #e7040f;
 }
 
+.observablehq {
+  --continuation-indent: 2ch;
+}
+
 .observablehq--inspect {
   font: var(--mono_fonts);
   overflow-x: auto;
@@ -134,9 +138,9 @@
 
 
 .observablehq--field > .observablehq--expanded > .observablehq--field {
-  margin-left: 1em;
+  margin-left: 2ch;
 }
 
 .observablehq--field > .observablehq--expanded > .observablehq--token-closing {
-  margin-left: -1em;
+  margin-left: calc(var(--continuation-indent) * -1);
 }
